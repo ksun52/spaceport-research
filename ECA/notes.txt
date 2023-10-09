@@ -1,0 +1,14 @@
+Functions to code 
+
+- load in counties and get center coordinate  
+
+- determine flight path until coast
+    - first just draw straight line and get to end 
+    - eventually change to 5 degree trajectory cone 
+    - make quick function for determining in US, out of US, or over water 
+
+- from flight path take all the pixels in the geotiff file on that flight path 
+    - sum up population on this flight path 
+
+- given a coordinate, backtrack it out to a value on the geotiff file 
+
