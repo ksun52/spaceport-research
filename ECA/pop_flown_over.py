@@ -53,7 +53,7 @@ def main():
     # transform  pixel_coords into the convention for plt.plot which is (how far right, how far down)
     pixel_plot_coords = [(i[1], i[0]) for i in pixel_coords]
     flyover_polygon_pixels = Polygon(pixel_plot_coords)
-
+    pdb.set_trace()
     # Plot the boundary on the GeoTIFF 
     plt.imshow(dataset.read(1), cmap='gray')
     plt.plot(*flyover_polygon_pixels.exterior.xy, color='red', linewidth=2)

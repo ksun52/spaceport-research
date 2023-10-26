@@ -21,7 +21,10 @@ plt.imshow(dataset.read(1), cmap='gray')
 #pdb.set_trace()
 
 # Load data from the JSON file
-with open("ECA/county_data2_better_mexico.json", "r") as file:
+# filename = "ECA/county_data_pop5000_spread10.json"
+# filename = "ECA/county_data_pop5000_spread15.json"
+filename = "ECA/county_data_pop5000_spread10_hazards.json"
+with open(filename, "r") as file:
     data = json.load(file)
 
 # Loop through every county to get and plot the launch angles 
@@ -51,7 +54,7 @@ for county in data:
         x1 = [pixel_plot_coords[0][0], pixel_plot_coords[1][0]]
         y1 = [pixel_plot_coords[0][1], pixel_plot_coords[1][1]]
         plt.plot(x1, y1, color='b')
-        #pdb.set_trace()
+        
         
     
     

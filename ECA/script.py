@@ -1,3 +1,6 @@
+"""
+Example script to loop through all values in JSON file and return new data 
+"""
 import json
 
 # Load data from the JSON file
