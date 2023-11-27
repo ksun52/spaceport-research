@@ -183,6 +183,7 @@ def get_corners(start_coord, launch_angle, spread, dataset):
 
     # check if the intersection points violate flying over Mexico or Canada
     if into_mex_can(left_coord, left_intersect, right_coord, right_intersect):
+        # pdb.set_trace()
         return None
 
     # clockwise with 0 index starting at top right corner 
@@ -307,26 +308,32 @@ def into_mex_can(left_coord, left_intersect, right_coord, right_intersect):
     
     # intersects Canada from top 
     if left_intersect == Side.TOP or right_intersect == Side.TOP:
+        # print("1")
         return True 
 
     # intersects Canada from Maine 
     # left side intersects Canada from Maine (only need to check this, dont need to check right side)
     if left_intersect == Side.RIGHT and left_coord[1] > 44.79583:
+        # pdb.set_trace()
+        # print("2")
         return True
 
     # right side boundary intersects Mexico 
     if right_intersect == Side.BOTTOM:
         if right_coord[0] > -117.2 and right_coord[0] < -93.5:
+            # print("3")
             return True
     
     # left side boundary intersects Mexico 
     if left_intersect == Side.BOTTOM:
         if left_coord[0] > -117.2 and left_coord[0] < -93.5:
+            # print("4")
             return True
 
     # right and left boundaries sandwich Mexico 
     if right_intersect == Side.BOTTOM and left_intersect == Side.BOTTOM:
         if left_coord[0] > -93.5 and right_coord[0] < -117.2:
+            # print("5")
             return True
 
     return False
