@@ -61,6 +61,7 @@ def main():
     print("end")
 
 # new as of 10/8 - re-write find_trajectories2 to pre-find all of the angle slices then add them up:
+# currently not using
 def valid_angle(start_coord, launch_angle, spread, dataset):
     left_angle = (launch_angle + spread/2) % 360    # when standing at the point, looking out at the launch angle, this is on the left hand side
     right_angle = (launch_angle - spread/2) % 360
@@ -76,6 +77,7 @@ def valid_angle(start_coord, launch_angle, spread, dataset):
     return True
 
 # new as of 10/8 - re-write find_trajectories2 to pre-find all of the angle slices then add them up:
+# currently not using
 def all_angle_slices(start_coord, spread, dataset, mexico_mask):
     angle_info = {} # index i corresponds to the 1 degree slice starting on degree i or centered on degree i (with 0.5 degrees on either side)
     if spread % 2 == 0:
@@ -303,9 +305,14 @@ def intersection(start_coord, angle, dataset):
 # Canada boundary: anywhere on the top boundary is not allowed  
 def into_mex_can(left_coord, left_intersect, right_coord, right_intersect):
     
-    # intersects Canada 
+    # intersects Canada from top 
     if left_intersect == Side.TOP or right_intersect == Side.TOP:
         return True 
+
+    # intersects Canada from Maine 
+    # left side intersects Canada from Maine (only need to check this, dont need to check right side)
+    if left_intersect == Side.RIGHT and left_coord[1] > 44.79583:
+        return True
 
     # right side boundary intersects Mexico 
     if right_intersect == Side.BOTTOM:
