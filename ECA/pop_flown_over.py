@@ -31,7 +31,7 @@ def main():
     #hidalgo_county = (-98.18, 26.39)
     #monroe_county = (-87.36, 31.56)
 
-    angle = 92   # launch angle convention
+    angle = 90   # launch angle convention
     angle2 = (90 - angle) % 360 # polar angle convention 
     #vertices = get_corners(hidalgo_county, angle2, 5, dataset)
     vertices = get_corners(brevard_county, angle2, spread=15, dataset=dataset)
@@ -53,10 +53,16 @@ def main():
     # transform  pixel_coords into the convention for plt.plot which is (how far right, how far down)
     pixel_plot_coords = [(i[1], i[0]) for i in pixel_coords]
     flyover_polygon_pixels = Polygon(pixel_plot_coords)
+    trajectory_pixels = Polygon([pixel_plot_coords[0], [pixel_plot_coords[1][0], (pixel_plot_coords[1][1] + pixel_plot_coords[2][1])/2], pixel_plot_coords[0], [pixel_plot_coords[1][0], (pixel_plot_coords[1][1] + pixel_plot_coords[2][1])/2]])
     pdb.set_trace()
     # Plot the boundary on the GeoTIFF 
     plt.imshow(dataset.read(1), cmap='gray')
-    plt.plot(*flyover_polygon_pixels.exterior.xy, color='red', linewidth=2)
+    # plt.plot(*flyover_polygon_pixels.exterior.xy, color='red', linewidth=2)
+    
+    # hard code polygon to plot 
+    plt.fill([5288, 6939, 6939, 5288], [2529, 2312, 2747, 2529], facecolor='red', edgecolor='red')
+
+    plt.plot(*trajectory_pixels.exterior.xy, color='lime', linewidth=2)
     plt.show()
     print("end")
 

@@ -5,6 +5,7 @@ import os
 import matplotlib.pyplot as plt
 import numpy as np
 import json
+import pdb
 
 # Open the GeoTIFF file
 file_directory = os.path.dirname(os.path.abspath(__file__))
@@ -36,15 +37,17 @@ bot = dataset.bounds.bottom
 # RASTERIO CONVENTION IS (X, Y) OR (LONGITUDE, LATITUDE) COORDINATES 
 whole = Polygon([(left, top), (left, bot), (right, bot), (right, top)])
 
+# pdb.set_trace()
+
 # Plot the triangle on the GeoTIFF (optional)
-# plt.imshow(dataset.read(1), cmap='gray')
-# plt.plot(*triangle_polygon.exterior.xy, color='red', linewidth=2)
-# plt.show()
+plt.imshow(dataset.read(1), cmap='gray')
+plt.plot(*triangle_polygon.exterior.xy, color='red', linewidth=2)
+plt.show()
 
 # Mask the raster within the triangle
-#masked_image, masked_transform = mask(dataset, [triangle_polygon], all_touched=True, nodata=0, crop=False)
-#masked_image, masked_transform = mask(dataset, [coords], all_touched=True, nodata=0, crop=False)    # with texas 
-masked_image, masked_transform = mask(dataset, [whole], all_touched=True, nodata=0, crop=False)    # with whole area
+# masked_image, masked_transform = mask(dataset, [triangle_polygon], all_touched=True, nodata=0, crop=False)
+masked_image, masked_transform = mask(dataset, [coords], all_touched=True, nodata=0, crop=False)    # with texas 
+# masked_image, masked_transform = mask(dataset, [whole], all_touched=True, nodata=0, crop=False)    # with whole area
 
 # Retrieve the pixel values within the triangle
 pixel_values = masked_image[0]

@@ -103,7 +103,7 @@ with open(os.path.join(file_directory, 'graphic.csv')) as county_file:
                 angle2 = (90 - angle) % 360
                 
                 # can edit spread - for now using 10 degrees 
-                vertices = get_corners(county_coord, angle2, spread=15, dataset=dataset)
+                vertices = get_corners(county_coord, angle2, spread=10, dataset=dataset)
                 if vertices == None:
                     # pdb.set_trace()
                     continue
@@ -126,7 +126,7 @@ with open(os.path.join(file_directory, 'graphic.csv')) as county_file:
 
                         # for now, set population limit to 5000 people being flown over 
                         #breakpoint()
-                        if pop < 1000:
+                        if pop <= 50:
                             possible_angles.append(angle)
             
         data = {
@@ -141,7 +141,7 @@ with open(os.path.join(file_directory, 'graphic.csv')) as county_file:
         print(f"finished checking {county_name} county")
     
 # Write the data to a JSON file
-json_filename = "faster_county_data_pop5000_spread15.json"
+json_filename = "minusCountyPop_pop50_spread10.json"
 with open(os.path.join(file_directory, json_filename), "w") as json_file:
     json.dump(counties_data, json_file, indent=4)
     print("all done!")

@@ -14,9 +14,12 @@ file_directory = os.path.dirname(os.path.abspath(__file__))
 filename = os.path.join(file_directory, 'usgrid_data_2010/geotiff/uspop10.tif')
 dataset = rasterio.open(filename)
 
+# THIS IS THE VALUE TO CHANGE FOR HAZARD ZONE SPREADS 
+spread = 10
 
 # Load data from the JSON file
-with open("ECA/county_data_pop5000_spread15.json", "r") as file:
+# SPREAD IS HERE
+with open(f"ECA/minusCountyPop_pop50_spread{spread}.json", "r") as file:
     data = json.load(file)
 
 # Loop through every county to add a list of polygons 
@@ -31,7 +34,8 @@ for county in data:
         # convert to polar coordinate convention - 0 degrees along positive x axis and increase counterclockwise
         angle2 = (90 - angle) % 360
 
-        vertices = get_corners(county_coord, angle2, spread=10, dataset=dataset)
+        # SPREAD IS HERE
+        vertices = get_corners(county_coord, angle2, spread=spread, dataset=dataset)
         
         if vertices == None:
             continue
@@ -44,5 +48,6 @@ for county in data:
 
 
 # Save the modified data back to the file
-with open("ECA/county_data_pop5000_spread15_hazards.json", "w") as file:
+# SPREAD IS HERE
+with open(f"ECA/minusCountyPop_pop50_spread{spread}_hazards.json", "w") as file:
     json.dump(data, file, indent=4)  # indent for pretty formatting
