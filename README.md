@@ -2,7 +2,7 @@
 
 This repository contains the code for data collection and data processing that supports the research in the following papers:
 
-1 “Spaceport Facility Location Planning within the US National Airspace System” 
+## Spaceport Facility Location Planning within the US National Airspace System
 
 This paper introduces a Spaceport Facility Location Planning (SPFLP) model to help plan the locations of the next generation of US spaceports to accommodate the rising demands of rocket launches. The model: 
 
@@ -11,8 +11,7 @@ This paper introduces a Spaceport Facility Location Planning (SPFLP) model to he
 - Quantifies National Airspace System (NAS) impacts so that air‑traffic delays, fuel burn, and inequitable congestion are explicitly captured in the objective function.
 - Supports sensitivity studies — varying rocket launch path hazard‑zone width, cost weights, and daily air traffic volume — to show how different assumptions shift optimal site choices and flight‑rerouting costs.
 
-\
-2 "Natural‑Disaster‑Resilient Spaceport Network Planning” 
+## Natural‑Disaster‑Resilient Spaceport Network Planning
 
 This paper builds upon the "Spaceport Facility Location Planning within the US National Airspace System" paper to offer a chance-constrained extention to the SPFLP model (CC-SPFLP). The CC-SPFLP model aims to choose new U.S. spaceport locations such that 1) aggregate launch demand is met and 2) the spaceport network can continue to operate with sufficient probability despite natural disasters occuring. 
 
